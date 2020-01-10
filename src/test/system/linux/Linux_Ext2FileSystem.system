@@ -1,0 +1,22 @@
+********************************************************************************
+class : Linux_Ext2FileSystem
+
+--------------------------------------------------------------------------------
+Linux_Ext2FileSystem : -eq -cmd countFileSystemEntries.pl ext2
+
+--------------------------------------------------------------------------------
+CSCreationClassName : -eq -file ComputerSystem.keys[0]
+CSName : -eq -file ComputerSystem.keys[1]
+CreationClassName : -eq Linux_Ext2FileSystem
+FileSystemType : -eq ext2
+
+Caption : -set
+Description : -set
+
+OtherEnabledState : -empty
+Status : -eq OK
+
+--------------------------------------------------------------------------------
+Instance Level : Linux_Ext2FileSystem.pl
+Property Order : Name EnabledState RequestedState Root ElementName
+

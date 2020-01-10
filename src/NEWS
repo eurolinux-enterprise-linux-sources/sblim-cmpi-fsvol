@@ -1,0 +1,39 @@
+Changes in 1.5.0
+================
+
+Bugs:
+- 2795176 migrated provider licenses to EPL
+
+Changes in 1.4.4
+================
+
+Bugs:
+- 1597688 Fixed data gathering that caused seg faults
+- 1601706 Fixed unresolved symbols in shared lib
+
+Changes in 1.4.3
+================
+
+Bugs:
+- 1285011 Fixes portability issues (syntax)
+- 1285324 Enhanced pegasus repository detection
+- 1328734 Fix for KB Read and Transferred Properties of
+          BlockDeviceStatisticalData
+- 1353262 Better support of Fedora/RedHat RPM build
+- 1203849 Removed compile warnings with CMPI >= 1.0.0
+- 1199129 Full support of CMPI 1.0.0
+
+Changes in 1.4.2
+================
+
+Bugs:
+- 1236584 Enhance tog-pegasus compatibility
+
+Changes in 1.4.1
+================
+
+Bugs:
+- 1199129 Added toleration for newer (spec-conforming) CMPI headers.
+- 1199146 Added missing registration for BlockDeviceStatisticalData.
+- 1183805 Added support for OpenWBEM provider registration.
+- 1201380 Fixed core dump in case of incorrect object path.

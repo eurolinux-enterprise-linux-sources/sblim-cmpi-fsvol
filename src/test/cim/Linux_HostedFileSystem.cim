@@ -1,0 +1,33 @@
+********************************************************************************
+association : Linux_HostedFileSystem
+objectPath : Linux_HostedFileSystem.GroupComponent="Linux_ComputerSystem.CreationClassName=Linux_ComputerSystem,Name=testsystem",PartComponent="Linux_Ext2FileSystem.CSCreationClassName=Linux_ComputerSystem,CSName=testsystem,CreationClassName=Linux_Ext2FileSystem,Name=/dev/hda33"
+sourceRole : GroupComponent
+targetRole : PartComponent
+sourceClass : Linux_ComputerSystem
+targetClass : CIM_FileSystem Linux_Ext2FileSystem Linux_Ext3FileSystem Linux_ReiserFileSystem Linux_NFS
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+

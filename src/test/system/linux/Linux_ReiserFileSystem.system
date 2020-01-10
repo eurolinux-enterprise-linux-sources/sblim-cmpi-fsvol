@@ -1,0 +1,22 @@
+********************************************************************************
+class : Linux_ReiserFileSystem
+
+--------------------------------------------------------------------------------
+Linux_ReiserFileSystem : -eq -cmd countFileSystemEntries.pl reiserfs
+
+--------------------------------------------------------------------------------
+CSCreationClassName : -eq -file ComputerSystem.keys[0]
+CSName : -eq -file ComputerSystem.keys[1]
+CreationClassName : -eq Linux_ReiserFileSystem
+FileSystemType : -eq reiserfs
+
+Caption : -set
+Description : -set
+
+OtherEnabledState : -empty
+Status : -eq OK
+
+--------------------------------------------------------------------------------
+Instance Level : Linux_ReiserFileSystem.pl
+Property Order : Name EnabledState RequestedState Root ElementName
+

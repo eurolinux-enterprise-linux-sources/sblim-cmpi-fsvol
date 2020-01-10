@@ -1,0 +1,168 @@
+
+/* ---------------------------------------------------------------------------*/
+(C) Copyright IBM Corp. 2003, 2009
+
+THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE
+("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+
+You can obtain a current copy of the Eclipse Public License from
+http://www.opensource.org/licenses/eclipse-1.0.php
+
+Author:       Heidi Neumann <heidineu@de.ibm.com>
+Date  :	      03/18/2003
+
+/* ---------------------------------------------------------------------------*/
+
+
+SBLIM File System & Volume Mgmt. Instrumentation for CMPI README
+................................................................
+
+
+Introduction
+------------
+
+The Filesystem & Volume Management Instrumentation allows you to get 
+information about mounted ( /etc/mtab ) and unmounted ( /etc/fstab )
+filesystems via CIMOM technology/infrastructure.
+
+The instrumented classes / associations are
+
+- Linux_Ext2FileSystem
+- Linux_Ext3FileSystem
+- Linux_ReiserFileSystem
+- Linux_NFS
+- Linux_BlockStorageStatisticalData
+- Linux_HostedFileSystem
+- Linux_BootOSFromFS
+
+
+Package Contents
+----------------
+
+./README	This file
+./*.h		Header Files
+./*.c		Provider Code
+./mof/		Schema file(s)
+./test/		Configuration files for SBLIM TestSuite
+
+
+
+CIMOM Build Instructions
+------------------------
+
+Prerequisites
+.............
+- CIMOM is installed
+- CMPI (for instance package cmpi-devel) latest version
+- CIM Schema Version 2.7 and higher loaded into the CIMOM's
+  repository
+- cmpi-base package installed
+
+Building CIMOM and CMPI for this CIMOM
+.........................................
+Please follow the instructions in the README.cmpi file of 
+the cmpi-adapter package.
+
+Building cmpi-base
+..................
+Please follow the instructions in the README file of the 
+cmpi-base package.
+
+
+Building cmpi-fsvol
+...................
+named INSTALL for generic instructions.
+
+The generated configure script tries to determine where the CMPI header files
+are located. For this purpose it searches a set of well-known locations.
+The "canonical" location is /usr/include/cmpi or /usr/local/include/cmpi,
+depending on how configure is invoked.
+
+Further, configure "determines" where providers are to be installed. Actually,
+there's no detection logic. The provider directory will always be
+/usr/lib/cmpi or /usr/local/lib/cmpi. If a CIM server requires a particular
+directory this can be selected by specifying the PROVIDERDIR variable.
+
+And finally, configure tries to find out which CIM server type is being used.
+This is necessary in order to select the appropriate schema and provider
+registration technique. If the CIM server is not or incorrectly identified,
+it is possible to specify it via the CIMSERVER variable.
+Supported values are pegasus, sfcb, openwbem and sniacimom.
+
+For instance, in order to configure for a locally installed Pegasus you can
+issue the following command:
+./configure CIMSERVER=pegasus PROVIDERDIR=$PEGASUS_HOME/lib
+
+		   directory
+
+Load Schema into CIMOM's repository
+...................................
+
+with Pegasus :
+..............
+The loading and registering of the classes/associations and
+their provider is done during the "make postinstall".
+
+with OpenCimom/SNIA CIMOM :
+...........................
+Start the cimbrowser (/usr/sniacimom/bin). Load the schema
+file Linux_Fsvol.mof with "File" -> "Reload Mof" into the 
+namespace root/cimv2. Before at least CIM Core and System
+schemata have to be loaded into the repository.
+
+
+Common Libraries
+----------------
+
+- OSBase_CommonFsvol :
+  implements the resource access and is responsible for common
+  file system & volume data gathering 
+
+- cmpiOSBase_CommonFsvol :
+  implements tool function, which handle CIM specific formats 
+  or data for the file system & volume data gathering 
+
+
+Class/Association specific Libraries
+------------------------------------
+
+class Linux_Ext2FileSystem, Linux_Ext3FileSystem, Linux_ReiserFileSystem
+..........................
+- cmpiOSBase_LocalFileSystemProvider.c
+- cmpiOSBase_LocalFileSystem.c/.h
+- OSBase_LocalFileSystem.c/.h
+
+class Linux_NFS
+...........................
+- cmpiOSBase_NFSProvider.c
+- cmpiOSBase_NFS.c/.h
+- OSBase_NFS.c/.h
+
+class Linux_BlockStorageStatisticalData
+...........................
+- cmpiOSBase_BlockStorageStatisticalDataProvider.c
+- cmpiOSBase_BlockStorageStatisticalData.c/.h
+- OSBase_BlockStorageStatisticalData.c/.h
+
+
+association Linux_HostedFileSystem
+...........................
+- cmpiOSBase_HostedFileSystemProvider.c
+
+association Linux_BootOSFromFS
+...........................
+- cmpiOSBase_BootOSFromFSProvider.c
+- cmpiOSBase_BootOSFromFS.c/.h
+
+
+Automated Function Verifcation Test 
+-----------------------------------
+
+The sub directory test contains the configuration files,
+necessary to drive the SBLIM Test Suite. The SBLIM Test
+Suite is a tool to automate function verification tests
+of providers. 
+
+How to set up and drive the test is described in the 
+README.TEST file.

@@ -1,0 +1,20 @@
+********************************************************************************
+class : Linux_NFS
+objectPath : Linux_NFS.CSCreationClassName=Linux_ComputerSystem,CSName=testsystem,CreationClassName=Linux_NFS,Name=nfsserver:/nfs/dir
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED

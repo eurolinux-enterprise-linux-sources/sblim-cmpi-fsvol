@@ -1,0 +1,8 @@
+********************************************************************************
+association : Linux_HostedFileSystem
+
+--------------------------------------------------------------------------------
+Linux_ComputerSystem : -target Linux_Ext3FileSystem -eq -cmd countFileSystemEntries.pl ext3
+Linux_ComputerSystem : -target Linux_Ext2FileSystem -eq -cmd countFileSystemEntries.pl ext2
+Linux_ComputerSystem : -target Linux_ReiserFileSystem -eq -cmd countFileSystemEntries.pl reiserfs
+CIM_UnixLocalFileSystem : -target Linux_ComputerSystem -eq 1

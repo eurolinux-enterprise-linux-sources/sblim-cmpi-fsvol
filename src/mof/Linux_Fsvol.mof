@@ -1,0 +1,233 @@
+//
+//  Linux_Fsvol.mof
+// 
+// (C) Copyright IBM Corp. 2002, 2009
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE ECLIPSE PUBLIC LICENSE 
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE 
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Eclipse Public License from
+// http://www.opensource.org/licenses/eclipse-1.0.php
+//
+// Author:       Heidi Neumann <heidineu@de.ibm.com>
+// Contributors:
+//
+// Description: 
+// CIM classes for Linux File System & Volume Management Instrumentation
+//
+
+
+#pragma locale ("en_US")
+//#pragma namespace ("root/cimv2")
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Classes
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+// ===================================================================
+//	CIM_UnixLocalFileSystem
+// ===================================================================
+
+[ Provider("cmpi:cmpiOSBase_LocalFileSystemProvider"), 
+  Description ("The Linux local filesystem of type ext2.")
+]
+class Linux_Ext2FileSystem : CIM_UnixLocalFileSystem
+{
+  uint8 PercentageSpaceUse;
+};
+
+
+[ Provider("cmpi:cmpiOSBase_LocalFileSystemProvider"), 
+  Description ("The Linux local filesystem of type ext3.")
+]
+class Linux_Ext3FileSystem : CIM_UnixLocalFileSystem
+{
+  uint8 PercentageSpaceUse;
+};
+
+
+[ Provider("cmpi:cmpiOSBase_LocalFileSystemProvider"), 
+  Description ("The Linux local filesystem of type reiser.")
+]
+class Linux_ReiserFileSystem : CIM_UnixLocalFileSystem
+{
+  uint8 PercentageSpaceUse;
+};
+
+
+// ===================================================================
+//	Linux_NFS
+// ===================================================================
+
+[ Provider("cmpi:cmpiOSBase_NFSProvider"), 
+  Description ("The Linux nfs mounted filesystem(s).")
+]
+class Linux_NFS : CIM_NFS
+{
+  uint8 PercentageSpaceUse;
+};
+
+
+// ===================================================================
+// Linux_BlockStorageStatisticalData
+// ===================================================================
+
+[ Provider("cmpi:cmpiOSBase_BlockStorageStatisticalDataProvider") ]
+class Linux_BlockStorageStatisticalData : CIM_StatisticalData
+{
+  [ Counter,
+    Description("The cumulative count of I/Os for the object.")
+  ]
+  uint64 TotalIOs;
+
+  [ Counter,
+    Units("KiloBytes"),
+    Description("The cumulative count of data transferred in "
+    "Kbytes (1024bytes = 1KByte).")
+  ]
+  uint64 KBytesTransfered;
+
+  [ Counter,
+    Description("The cumulative elapsed I/O time (number of Clock "
+    "Tick Intervals) for all I/Os as defined in 'Total I/Os'. I/O "
+    "response time is added to this counter at the completion of "
+    "each measured I/O using ClockTickInterval units. This value "
+    "can be divided by number of IOs to obtain an average "
+    "response time.")
+  ]
+  uint64 IOTimeCounter;
+
+  [ Counter,
+    Description("The cumulative count of all reads.")
+  ]
+  uint64 ReadIOs;
+
+  [ Counter,
+    Description("The cumulative count of all read cache hits "
+    "(Reads from Cache).")
+  ]
+  uint64 ReadHitIOs;
+
+  [ Counter,
+    Description("The cumulative elapsed time for all Read I/Os "
+    "for all cumulative Read I/Os.")
+  ]
+  uint64 ReadIOTimeCounter;
+
+  [ Counter,
+    Description("The cumulative elapsed time for all Read I/Os "
+    "read from cache for all cumulative Read I/Os.")
+  ]
+  uint64 ReadHitIOTimeCounter;
+
+  [ Counter,
+    Units("KiloBytes"),
+    Description("The cumulative count of data read in Kbytes "
+    "(1024bytes = 1KByte).")
+  ]
+  uint64 KBytesRead;
+
+  [ Counter,
+    Description("The cumulative count of all writes.")
+  ]
+  uint64 WriteIOs;
+
+  [ Counter,
+    Description("The cumulative count of Write Cache Hits "
+    "(Writes that went directly to Cache).")
+  ]
+  uint64 WriteHitIOs;
+
+  [ Counter,
+    Description("The cumulative elapsed time for all Write "
+    "I/Os for all cumulative Writes.")
+  ]
+  uint64 WriteIOTimeCounter;
+
+  [ Counter,
+    Description("The cumulative elapsed time using "
+    "ClockTickInterval units for all Write I/Os written "
+    "to cache for all cumulative Write I/Os.")
+  ]
+  uint64 WriteHitIOTimeCounter;
+
+  [ Counter,
+    Description("The cumulative elapsed idle time using "
+    "ClockTickInterval units (Cumulative Number of Time "
+    "Units for all idle time in the array).")
+  ]
+  uint64 IdleTimeCounter;
+
+  [ Counter,
+    Description("The cumulative count of all disk maintenance "
+    "operations (SCSI commands such as: Verify, skip-mask, XOR "
+    "read, XOR write-read, etc).This is needed to understand the "
+    "load on the disks that may interfere with normal read and "
+    "write operations.")
+  ]
+  uint64 MaintOp;
+
+  [ Counter,
+    Description("The cumulative elapsed disk mainenance time. "
+    "Maintainance response time is added to this counter at the "
+    "completion of each measured maintenance operation using "
+    "ClockTickInterval units.")
+  ]
+  uint64 MaintTimeCounter;
+};
+
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Associations
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+// ===================================================================
+// 	Linux_HostedFileSystem
+// ===================================================================
+
+[ Association, 
+  Aggregation,
+  Composition,
+  Provider("cmpi:cmpiOSBase_HostedFileSystemProvider") ] 
+class Linux_HostedFileSystem : CIM_HostedFileSystem
+{
+  [ Override ("GroupComponent"),
+    Description ("The Computer System Container.")
+  ]
+  Linux_ComputerSystem REF GroupComponent;
+
+  [ Override ("PartComponent"),
+    Description ("The hosted File Systems (local and remote).")
+  ]
+  CIM_FileSystem REF PartComponent;
+};
+
+
+// ===================================================================
+// 	Linux_BootOSFromFS
+// ===================================================================
+
+[ Association,
+  Provider("cmpi:cmpiOSBase_BootOSFromFSProvider") ] 
+class Linux_BootOSFromFS : CIM_BootOSFromFS
+{ 
+  [ Override ("Antecedent"),
+    Description ("The FileSystem, the OS is booted from.")
+  ]
+  CIM_UnixLocalFileSystem REF Antecedent;
+
+  [ Override ("Dependent"),
+    Description ("The current running OS." )
+  ]
+  Linux_OperatingSystem REF Dependent;
+};
+
