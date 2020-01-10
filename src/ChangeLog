@@ -1,3 +1,39 @@
+2011-05-17  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, OSBase_BlockStorageStatisticalData.c:
+
+	Fixed 3303682: include virtio devices in disk query
+
+2011-04-04  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, test/test-cmpi-fsvol.sh:
+
+	Fixed 3275169: bash error reported in provider bootstrap scripts
+
+2011-04-04  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, test/test-cmpi-fsvol.sh:
+
+	Fixed 3275200: provider scripts don't pass all command line opts
+
+2010-08-13  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* NEWS, mof/Linux_Fsvol.registration:
+
+	Fixed 3044649: remove Linux_CSProcessor from reg file
+
+2009-06-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* configure.ac:
+
+	Updated ChangeLog for 1.5.0 release
+
+2009-06-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+	* ChangeLog:
+
+	Updated ChangeLog for 1.5.0 release
+
 2009-06-02  Tyrel Datwyler <tyreld@us.ibm.com>
 
 	* COPYING, Makefile.am, NEWS, OSBase_BlockStorageStatisticalData.c,

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(SBLIM BaseOS Filesystem Providers, 1.5.0, sblim-devel@lists.sourceforge.net,sblim-cmpi-fsvol)
+AC_INIT(SBLIM BaseOS Filesystem Providers, 1.5.1, sblim-devel@lists.sourceforge.net,sblim-cmpi-fsvol)
 AC_CONFIG_SRCDIR([OSBase_CommonFsvol.c])
 AC_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE

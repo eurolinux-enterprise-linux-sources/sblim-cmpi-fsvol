@@ -3,14 +3,14 @@
 
 Summary:        SBLIM fsvol instrumentation
 Name:           sblim-cmpi-fsvol
-Version:        1.5.0
-Release:        2%{?dist}
+Version:        1.5.1
+Release:        1%{?dist}
 License:        EPL
 Group:          Applications/System
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL:            http://sourceforge.net/projects/sblim/
 Source0:        http://downloads.sourceforge.net/sblim/%{name}-%{version}.tar.bz2
-Patch1:		sblim-cmpi-fsvol-1.5.0-vda.patch
+Patch0:         sblim-cmpi-fsvol-1.5.0-ext4-support.patch
 BuildRequires:  tog-pegasus-devel >= %{tog_pegasus_version}
 BuildRequires:  sblim-cmpi-base-devel
 Requires:       tog-pegasus >= %{tog_pegasus_version}
@@ -43,7 +43,7 @@ SBLIM Base Fsvol Testcase Files for SBLIM Testsuite
 
 %prep
 %setup -q
-%patch1 -p1 -b .vda
+%patch0 -p1 -b .ext4-support
 
 %build
 %ifarch s390 s390x ppc ppc64
@@ -127,6 +127,12 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jun 16 2011 Vitezslav Crhonek <vcrhonek@redhat.com> - 1.5.1-1
+- Update to sblim-cmpi-fsvol-1.5.1
+  Resolves: #694506
+- Add Linux_Ext4FileSystem class support
+  Resolves: #663833
+
 * Mon Jul 26 2010 Radek Vokal <rvokal@redhat.com> - 1.5.0-2
 - add KVM/vda support
 - Resolves: #616171

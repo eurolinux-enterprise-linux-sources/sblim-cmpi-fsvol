@@ -1,3 +1,12 @@
+Changes in 1.5.1
+================
+
+Bugs:
+- 3044649 remove Linux_CSProcessor from reg file
+- 3275200 provider scripts don't pass all command line opts
+- 3275169 bash error reported in provider bootstrap scripts
+- 3303682 include virtio devices in disk query
+
 Changes in 1.5.0
 ================
 

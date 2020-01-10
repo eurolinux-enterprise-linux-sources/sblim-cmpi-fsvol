@@ -30,8 +30,8 @@
 
 #define CHECK_FCT_PARAM
 
-#define HD_CMD "grep \"[hs]d[a-z] \" /proc/partitions"
-#define HD_CMD_26 "grep \"[hs]d[a-z] \" /proc/diskstats"
+#define HD_CMD "grep \"[hsv]d[a-z] \" /proc/partitions"
+#define HD_CMD_26 "grep \"[hsv]d[a-z] \" /proc/diskstats"
 
 #define STATS_FILE "/proc/partitions"
 #define STATS_FILE_26 "/proc/diskstats"

@@ -8,7 +8,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Summary: SBLIM FSVOL Instrumentation
 Name: sblim-cmpi-fsvol
-Version: 1.5.0
+Version: 1.5.1
 Release: 1
 Group: Systems Management/Base
 URL: http://www.sblim.org
