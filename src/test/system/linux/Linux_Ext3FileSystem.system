@@ -1,0 +1,22 @@
+********************************************************************************
+class : Linux_Ext3FileSystem
+
+--------------------------------------------------------------------------------
+Linux_Ext3FileSystem : -eq -cmd countFileSystemEntries.pl ext3
+
+--------------------------------------------------------------------------------
+CSCreationClassName : -eq -file ComputerSystem.keys[0]
+CSName : -eq -file ComputerSystem.keys[1]
+CreationClassName : -eq Linux_Ext3FileSystem
+FileSystemType : -eq ext3
+
+Caption : -set
+Description : -set
+
+OtherEnabledState : -empty
+Status : -eq OK
+
+--------------------------------------------------------------------------------
+Instance Level : Linux_Ext3FileSystem.pl
+Property Order : Name EnabledState RequestedState Root ElementName
+

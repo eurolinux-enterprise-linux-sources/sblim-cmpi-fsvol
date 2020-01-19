@@ -1,0 +1,33 @@
+********************************************************************************
+association : Linux_BootOSFromFS
+objectPath : Linux_BootOSFromFS.Antecedent="Linux_Ext2FileSystem.CSCreationClassName=Linux_ComputerSystem,CSName=testsystem,CreationClassName=Linux_Ext2FileSystem,Name=/dev/hda33",Dependent="Linux_OperatingSystem.CSCreationClassName=Linux_ComputerSystem,CSName=testsystem,CreationClassName=Linux_OperatingSystem,Name=testsystem"
+sourceRole : Antecedent
+targetRole : Dependent
+sourceClass : CIM_FileSystem Linux_Ext2FileSystem Linux_Ext3FileSystem Linux_ReiserFileSystem
+targetClass : Linux_OperatingSystem
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
