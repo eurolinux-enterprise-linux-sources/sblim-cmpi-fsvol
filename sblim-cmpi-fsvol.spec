@@ -3,7 +3,7 @@
 Summary:        SBLIM fsvol instrumentation
 Name:           sblim-cmpi-fsvol
 Version:        1.5.1
-Release:        11%{?dist}
+Release:        12%{?dist}
 License:        EPL
 Group:          Applications/System
 URL:            http://sourceforge.net/projects/sblim/
@@ -13,6 +13,8 @@ Patch0:         sblim-cmpi-fsvol-1.5.0-ext4-support.patch
 Patch1:         sblim-cmpi-fsvol-1.5.1-pegasus-interop.patch
 # Patch2: backported from upstream
 Patch2:         sblim-cmpi-fsvol-1.5.1-mounted-fs-shown-as-disabled.patch
+# Patch3: fixes  mounted filesystem is shown as disabled when device mapper is used
+Patch3:         sblim-cmpi-fsvol-1.5.1-mounted-dm-fs-shown-as-disabled.patch
 
 BuildRequires:  sblim-cmpi-base-devel sblim-cmpi-devel
 Requires:       sblim-cmpi-base cim-server
@@ -45,6 +47,7 @@ SBLIM Base Fsvol Testcase Files for SBLIM Testsuite
 %patch0 -p1 -b .ext4-support
 %patch1 -p1 -b .pegasus-interop
 %patch2 -p0 -b .mounted-fs-shown-as-disabled
+%patch3 -p1 -b .mounted-dm-fs-shown-as-disabled
 
 %build
 %ifarch s390 s390x ppc ppc64
@@ -185,6 +188,10 @@ fi
 %postun -p /sbin/ldconfig
 
 %changelog
+* Thu Mar 09 2017 Vitezslav Crhonek <vcrhonek@redhat.com> - 1.5.1-12
+- Fix mounted filesystem is shown as disabled when device mapper is used
+  Resolves: #1136116
+
 * Wed Feb 26 2014 Vitezslav Crhonek <vcrhonek@redhat.com> - 1.5.1-11
 - Fix mounted filesystem is shown as disabled when fstab entry uses link, UUID or LABEL
   Resolves: #921487
